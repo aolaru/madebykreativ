@@ -1,13 +1,13 @@
 :root {
-  --bg: #0a1224;
-  --bg-alt: #101c34;
-  --text: #e8f0ff;
-  --muted: #a8b9db;
-  --card: rgba(13, 24, 44, 0.86);
-  --card-border: rgba(120, 171, 255, 0.2);
-  --card-border-hover: rgba(149, 193, 255, 0.7);
-  --accent: #8bc3ff;
-  --accent-strong: #b4ffcf;
+  --bg: #0f131b;
+  --bg-alt: #1b2433;
+  --text: #eaf0f8;
+  --muted: #b5c0d1;
+  --card: rgba(20, 29, 43, 0.86);
+  --card-border: rgba(160, 178, 205, 0.22);
+  --card-border-hover: rgba(161, 233, 192, 0.72);
+  --accent: #9fe6bf;
+  --accent-strong: #c8f3de;
 }
 
 * {
@@ -22,8 +22,8 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   background:
-    radial-gradient(1200px 560px at 95% -20%, rgba(44, 96, 171, 0.45), transparent 58%),
-    radial-gradient(900px 480px at -15% 110%, rgba(33, 83, 139, 0.55), transparent 62%),
+    radial-gradient(1200px 560px at 95% -20%, rgba(118, 138, 169, 0.34), transparent 58%),
+    radial-gradient(900px 480px at -15% 110%, rgba(65, 84, 114, 0.44), transparent 62%),
     linear-gradient(160deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
 
@@ -44,19 +44,12 @@ a {
 }
 
 .brand-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   width: 128px;
   height: 128px;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
   border-radius: 16px;
-  background: #000;
-  color: #fff;
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
 }
 
 .eyebrow {
@@ -104,7 +97,7 @@ a {
 .pillar:focus-visible {
   transform: translateY(-5px);
   border-color: var(--card-border-hover);
-  box-shadow: 0 14px 40px rgba(6, 10, 18, 0.35);
+  box-shadow: 0 14px 40px rgba(8, 12, 20, 0.45);
 }
 
 .pillar:focus-visible {
@@ -147,7 +140,7 @@ a {
 .footer {
   margin-top: 4.5rem;
   font-size: 0.85rem;
-  color: rgba(200, 217, 246, 0.7);
+  color: rgba(206, 217, 233, 0.72);
 }
 
 @media (max-width: 700px) {
