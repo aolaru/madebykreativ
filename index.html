@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Made by Kreativ</title>
   <meta name="description" content="Creative tools, curated assets, and utility software crafted by the Kreativ brand." />
-  <meta name="theme-color" content="#0f131b" />
+  <meta name="theme-color" content="#f3f6fb" />
   <meta name="robots" content="index,follow" />
 
   <link rel="canonical" href="https://madebykreativ.com/" />
@@ -35,6 +35,9 @@
   <main class="container">
 
     <header class="hero">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch color theme">
+        Light mode
+      </button>
       <img class="brand-logo" src="kreativ-logo-128.svg" width="128" height="128" alt="Kreativ logo" />
       <p class="eyebrow">Independent digital studio</p>
       <h1>Made by Kreativ</h1>
@@ -81,6 +84,30 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const themeKey = "kreativ-theme";
+    const root = document.documentElement;
+    const toggle = document.getElementById("theme-toggle");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const darkThemeColor = "#0f131b";
+    const lightThemeColor = "#f3f6fb";
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      toggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+      toggle.textContent = theme === "light" ? "Dark mode" : "Light mode";
+      themeMeta.setAttribute("content", theme === "light" ? lightThemeColor : darkThemeColor);
+    }
+
+    const savedTheme = localStorage.getItem(themeKey);
+    const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
+    applyTheme(initialTheme);
+
+    toggle.addEventListener("click", () => {
+      const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(nextTheme);
+      localStorage.setItem(themeKey, nextTheme);
+    });
   </script>
 
 </body>
