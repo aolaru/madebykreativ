@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posts | Made by Kreativ</title>
+  <meta name="description" content="Updates and notes from the Made by Kreativ ecosystem." />
+  <meta name="theme-color" content="#f3f6fb" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://madebykreativ.com/posts.html" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      const key = "kreativ-theme";
+      let saved = null;
+      try { saved = localStorage.getItem(key); } catch (_) { saved = null; }
+      const theme = saved === "dark" || saved === "light" ? saved : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "light" ? "#f3f6fb" : "#0f131b");
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch color theme">Light mode</button>
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="/">Home</a>
+        <a href="/posts.html" aria-current="page">Posts</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <img class="brand-logo" src="kreativ-logo-128.svg" width="128" height="128" alt="Kreativ logo" />
+      <p class="eyebrow">Updates</p>
+      <h1>Posts</h1>
+      <p class="tagline">News, release notes, and ecosystem updates.</p>
+    </header>
+
+    <section class="content-card">
+      <h2>Latest</h2>
+      <ul>
+        <li><strong>Design System Refresh</strong> - Unified light/dark theming and accessibility polish across pages.</li>
+        <li><strong>Brand Updates</strong> - New logo asset flow and favicon variants.</li>
+        <li><strong>Ecosystem Improvements</strong> - Better navigation across Kreativ Font, Sound, and WP products.</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> KREATIV · Independent creative tools and assets</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const themeKey = "kreativ-theme";
+    const root = document.documentElement;
+    const toggle = document.getElementById("theme-toggle");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const darkThemeColor = "#0f131b";
+    const lightThemeColor = "#f3f6fb";
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      toggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+      toggle.textContent = theme === "light" ? "Dark mode" : "Light mode";
+      themeMeta.setAttribute("content", theme === "light" ? lightThemeColor : darkThemeColor);
+    }
+
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem(themeKey); } catch (_) { savedTheme = null; }
+    const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
+    applyTheme(initialTheme);
+
+    toggle.addEventListener("click", () => {
+      const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(nextTheme);
+      try { localStorage.setItem(themeKey, nextTheme); } catch (_) {}
+    });
+  </script>
+</body>
+</html>
