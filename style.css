@@ -21,7 +21,7 @@
   --bg: #f3f6fb;
   --bg-alt: #e3ebf7;
   --text: #172235;
-  --muted: #495a74;
+  --muted: #3f516d;
   --card: rgba(255, 255, 255, 0.78);
   --card-border: rgba(72, 95, 133, 0.2);
   --card-border-hover: rgba(93, 178, 131, 0.55);
@@ -96,6 +96,11 @@ a {
   border-color: var(--card-border-hover);
 }
 
+.theme-toggle[aria-pressed="true"] {
+  border-color: var(--card-border-hover);
+  background: rgba(159, 230, 191, 0.18);
+}
+
 .theme-toggle:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -139,6 +144,20 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.25rem;
+}
+
+.js-ready .pillar {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal-up 420ms ease forwards;
+}
+
+.js-ready .pillar:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.js-ready .pillar:nth-child(3) {
+  animation-delay: 160ms;
 }
 
 .pillar {
@@ -201,6 +220,19 @@ a {
   color: var(--footer);
 }
 
+.ecosystem-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.ecosystem-links a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 @media (max-width: 700px) {
   .container {
     padding: 4rem 1rem;
@@ -209,6 +241,10 @@ a {
   .theme-toggle {
     position: static;
     margin: 0 auto 1rem;
+  }
+
+  .ecosystem-links {
+    justify-content: flex-start;
   }
 
   .pillar {
@@ -234,5 +270,21 @@ a {
   .pillar:focus-visible .cta::after {
     transform: none !important;
     box-shadow: none !important;
+  }
+
+  .js-ready .pillar {
+    opacity: 1;
+    animation: none !important;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
